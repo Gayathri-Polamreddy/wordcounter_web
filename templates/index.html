@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Counter Web App</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #F97794, #623AA2);
+            min-height: 100vh;
+            padding-top: 40px;
+            font-family: 'Segoe UI', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            max-width: 750px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #4b1f70; 
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #4b1f70;
+        }
+
+        input[type="text"] {
+            height: 50px;
+            font-size: 16px;
+        }
+
+        .btn-custom {
+            background: #F97794;
+            color: white;
+            font-size: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            transition: 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: #d8657d;
+            transform: scale(1.03);
+        }
+
+        .section-title {
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .full-title {
+            background: #623AA2;
+        }
+
+        .search-title {
+            background: #8c51e0;
+        }
+
+        .result-box {
+            background: #fdf3f6;
+            border-left: 5px solid #F97794;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .result-box li {
+            font-size: 17px;
+            padding: 4px;
+            color: #4b1f70;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📘 Word Counter Web Application</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Select a text file:</label>
+        <input type="file" name="file" class="form-control" required><br>
+
+        <label>Search specific words (optional):</label>
+        <input type="text" name="search_words"
+               placeholder="Enter words separated by comma, space, semicolon…"
+               class="form-control mb-3">
+
+        <button class="btn btn-custom w-100">Upload & Process</button>
+    </form>
+
+    <hr>
+
+    {% if full_result %}
+    <h3 class="section-title full-title">Full Word Count Result</h3>
+    <div class="result-box">
+        <ul>
+            {% for word, count in full_result.items() %}
+            <li><b>{{ word }}</b>: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if search_result %}
+    <h3 class="section-title search-title">Search Word Result</h3>
+    <div class="result-box">
+        <ul>
+            {% for word, count in search_result.items() %}
+            <li><b>{{ word }}</b>: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
