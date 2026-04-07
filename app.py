@@ -23,7 +23,7 @@ def index():
         if search_words == '' and word_counter:
             full_result = word_counter
 
-        # If user searched words
+        # If user searched words.
         elif search_words != '' and word_counter:
             for delimiter in [',', ';', ':', '/', '|']:
                 search_words = search_words.replace(delimiter, ' ')
