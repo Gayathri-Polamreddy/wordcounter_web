@@ -19,7 +19,7 @@ def index():
             words = text.lower().split()
             word_counter = Counter(words)
 
-        # If no search → show full count
+        # If no search → show full count.
         if search_words == '' and word_counter:
             full_result = word_counter
 
